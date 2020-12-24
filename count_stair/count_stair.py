@@ -52,8 +52,8 @@ if __name__ == "__main__":
     rot = cv2.warpAffine(img, m, (img.shape[0], img.shape[1]))
     counter = Counter(img)
     rotation = counter.rotation_img()
-    cv2.imshow('1', counter.img)
-    cv2.imshow('', rotation)
+    cv2.imshow('orginal img', counter.img)
+    cv2.imshow('rotated img', rotation)
     peaks, descents, num = counter.count()
     peaks, _ = peaks
     print(peaks)
