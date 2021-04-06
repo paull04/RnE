@@ -12,7 +12,8 @@ class Counter:
     def init(self, img):
         self.img = np.asarray(img)
         self.gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-        self.gray = cv2.fastNlMeansDenoising(self.gray, 10, 10, 7, 21)
+        #self.gray = cv2.fastNlMeansDenoising(self.gray, 10, 10, 7, 21)
+        cv2.GaussianBlur(self.gray, (3, 3), 0, 0)
         self.edges = cv2.Canny(self.gray, 80, 240, 3)
         self.w = img.shape[0]
         self.h = img.shape[1]
@@ -47,7 +48,7 @@ class Counter:
 
 
 if __name__ == "__main__":
-    img = cv2.imread('ukd2Y.png')
+    img = cv2.imread('test.png')
     m = cv2.getRotationMatrix2D((img.shape[0]/2, img.shape[1]/2), 90, 1)
     rot = cv2.warpAffine(img, m, (img.shape[0], img.shape[1]))
     counter = Counter(img)
